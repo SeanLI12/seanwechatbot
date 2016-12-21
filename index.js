@@ -1,7 +1,5 @@
 
 const token = process.env.token;
-const appid =process.env.appid;
-const eckey=process.env.eckey;
 
 var TelegramBot = require('node-telegram-bot-api');
 
