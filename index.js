@@ -11,6 +11,7 @@ var wechat = require('wechat');
 var express = require('express');
 var app = express();
 
+
 var config = {
   token: token,
   appid: appid,
