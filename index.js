@@ -1,7 +1,7 @@
 
 const token = process.env.token;
 const appid =process.env.appid;
-const encodingAESKey=process.env.encodingAESKey;
+const eckey=process.env.eckey;
 
 
 
@@ -13,7 +13,7 @@ var app = express();
 var config = {
   token: token,
   appid: appid,
-  encodingAESKey: encodingAESKey
+  encodingAESKey: eckey
 };
 
 app.use(express.query());
