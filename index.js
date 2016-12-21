@@ -3,56 +3,32 @@ const token = process.env.token;
 const appid =process.env.appid;
 const eckey=process.env.eckey;
 
-console.log("token:"+token);
-console.log("appid:"+appid);
-console.log("eckey:"+eckey);
+var TelegramBot = require('node-telegram-bot-api');
 
-var wechat = require('wechat');
-var express = require('express');
-var app = express();
+// replace the value below with the Telegram token you receive from @BotFather
 
+// Create a bot that uses 'polling' to fetch new updates
+var bot = new TelegramBot(token, { polling: true });
 
-var config = {
-  token: token,
-  appid: appid,
-  encodingAESKey: eckey
-};
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, function (msg, match) {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
 
-app.use(express.query());
-app.use('/wechat', wechat(config, function (req, res, next) {
-  // 微信输入信息都在req.weixin上
-  var message = req.weixin;
-  if (message.FromUserName === 'diaosi') {
-    // 回复屌丝(普通回复)
-    res.reply('hehe');
-  } else if (message.FromUserName === 'text') {
-    //你也可以这样回复text类型的信息
-    res.reply({
-      content: 'text object',
-      type: 'text'
-    });
-  } else if (message.FromUserName === 'hehe') {
-    // 回复一段音乐
-    res.reply({
-      type: "music",
-      content: {
-        title: "来段音乐吧",
-        description: "一无所有",
-        musicUrl: "http://mp3.com/xx.mp3",
-        hqMusicUrl: "http://mp3.com/xx.mp3",
-        thumbMediaId: "thisThumbMediaId"
-      }
-    });
-  } else {
-    // 回复高富帅(图文回复)
-    res.reply([
-      {
-        title: '你来我家接我吧',
-        description: '这是女神与高富帅之间的对话',
-        picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
-        url: 'http://nodeapi.cloudfoundry.com/'
-      }
-    ]);
-  }
-}));
+  var chatId = msg.chat.id;
+  var resp = match[1]; // the captured "whatever"
+
+  // send back the matched "whatever" to the chat
+  bot.sendMessage(chatId, resp);
+});
+
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on('message', function (msg) {
+  var chatId = msg.chat.id;
+
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, "Received your message");
+});
 
