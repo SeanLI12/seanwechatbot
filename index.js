@@ -1,7 +1,7 @@
 
-const token = process.evv.token;
-const appid =process.evv.appid;
-const encodingAESKey=process.evv.encodingAESKey;
+const token = process.env.token;
+const appid =process.env.appid;
+const encodingAESKey=process.env.encodingAESKey;
 
 
 var wechat = require('wechat');
