@@ -18,7 +18,6 @@ const webhook = {
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, webhook);
 
-
 bot.onText(/\/echo (.+)/, function (msg, match) {
   // 'msg' is the received Message from Telegram
   // 'match' is the result of executing the regexp above on the text content
