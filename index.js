@@ -16,7 +16,7 @@ const webhook = {
 // replace the value below with the Telegram token you receive from @BotFather
 
 // Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, webHook);
+const bot = new TelegramBot(token, webhook);
 
 
 bot.onText(/\/echo (.+)/, function (msg, match) {
