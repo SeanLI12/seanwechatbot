@@ -3,7 +3,9 @@ const token = process.env.token;
 const appid =process.env.appid;
 const eckey=process.env.eckey;
 
-
+console.log("token:"+token);
+console.log("appid:"+appid);
+console.log("eckey:"+eckey);
 
 var wechat = require('wechat');
 var express = require('express');
