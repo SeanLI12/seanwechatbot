@@ -5,7 +5,9 @@ const encodingAESKey=process.env.encodingAESKey;
 
 
 var wechat = require('wechat');
-var app = require('express');
+var express = require('express');
+var app = express();
+
 var config = {
   token: token,
   appid: appid,
